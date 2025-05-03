@@ -2,7 +2,7 @@
 this is a nix file for gnupg for unix systems, my personal systm is arch
 
 
-# 100.103 
+# nix & gnupg
 I was going to build from source, but i could see a problem happening with the path i needed to take with the path that i would need to put the because of the /usr/ directory and it caused pacman to scream at me when downgraded the core packages and re-upgraded due package conflicts
 even when moving the package to /usr/local it shits bricks when i downgrade and regrade due to core package conflicts
 
@@ -109,17 +109,8 @@ nix-shell
 
 **Isolation Achieved:**
 
-Regardless of whether you use the `result` symlink, `nix-shell`, or `nix-env`, the GnuPG executable and all its dependencies live exclusively in the `/nix/store/` directory tree. Your system's `/usr/bin/gpg` and its libraries, managed by pacman, are completely untouched. This ensures that your custom build does not conflict with your Arch Linux system packages.
+Regardless of whether you use the `result` symlink, `nix-shell`, or `nix-env`, the GnuPG executable and all its dependencies live exclusively in the `/nix/store/` directory tree. The system's `/usr/bin/gpg` and its libraries, managed by pacman, are completely untouched. This ensures that your custom build does not conflict with system packages.
 
-**Ignoring Build Outputs in Git:**
-
-You typically don't want to commit the `result` symlink to your Git repository. Add `result` to your `.gitignore` file in the root of your repository:
-```
-# Ignore Nix results
-result
-# Optional: Ignore other Nix build artifacts
-.nix-gc-roots/
-```
 
 **Cleaning Up:**
 
